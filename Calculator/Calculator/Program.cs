@@ -10,22 +10,22 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            int num1;
-            int num2;
+            float num1;
+            float num2;
+            float result;
             string operation;
-            int result;
 
             Console.WriteLine("...... Welcome to the Calculator.....");
 
             Console.WriteLine("Enter your first number : ");
-            num1 = Convert.ToInt32(Console.ReadLine());
+            num1 = float.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter your second number : ");
-            num2 = Convert.ToInt32(Console.ReadLine());
+            num2 = float.Parse(Console.ReadLine());
 
             Console.WriteLine("What type of operation you whould like to do : ");
             Console.WriteLine("Enter 'a' for addition, 's' for substraction, 'd' for divition, 'm' for multiplication ");
-            operation = Console.ReadLine();
+            operation = Console.ReadLine().ToLower();
 
             if (operation == "a")
             {
@@ -37,7 +37,7 @@ namespace Calculator
             }
             else if (operation == "d")
             {
-                result = num1 / num2;
+                result = num2 == 0? float.NaN : num1 / num2;
             }
             else if (operation == "m")
             {
@@ -50,7 +50,15 @@ namespace Calculator
 
             }
 
-            Console.WriteLine("Answer is : " + result);
+            if (float.IsNaN(result))
+            {
+                Console.WriteLine("Can not divide by zero");
+            } else
+            {
+                Console.WriteLine("Answer is : " + result);
+            }
+
+            Console.WriteLine("...Thank you for using calculator...");
         }
     }
 }
